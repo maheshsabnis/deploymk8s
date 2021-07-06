@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: aspnet-catapi-container # the container name in POD
-          image: mast007/catapi # image name that will be pulled
+          image: mast007/catapi:v1 # image name that will be pulled
           resources: # very important configuration for the POD so that service will be loaded and executed
             limits:
               cpu: "500m" # allocate half CPU for this service

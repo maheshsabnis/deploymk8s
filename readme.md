@@ -58,7 +58,7 @@ spec:
     spec:
       containers:
         - name: aspnet-catapi-container # the container name in POD
-          image: mast007/catapi # image name that will be pulled
+          image: mast007/catapi:v1 # image name that will be pulled
           resources: # very important configuration for the POD so that service will be loaded and executed
             limits:
               cpu: "500m" # allocate half CPU for this service
@@ -86,3 +86,20 @@ spec:
     app: asptnet-catapi-pod # the POD where the image will be deployed in container
   type: LoadBalancer # provides a public access to the service        
 ```
+
+# Applying yml for deployment on Kubernetes
+
+microk8s kubectl apply -f deployment.yaml
+
+microk8s kubectl apply -f service.yaml
+
+# List all pods
+microk8s kubectl get pods
+# List all services
+microk8s kubectl get services / microk8s kubectl get svc
+# To describe a pod to see if the image is successfully pulled from repository
+microk8s kubectl describe pods <POD-NAME>
+# To delete the service and deployment from Kubernetes run the following command
+microk8s kubectl delete -f service.yml
+microk8s kubectl delete -f deployment.yml
+
