@@ -103,3 +103,21 @@ microk8s kubectl describe pods <POD-NAME>
 microk8s kubectl delete -f service.yml
 microk8s kubectl delete -f deployment.yml
 
+
+# The Microk8s will provide the service details as followes
+NAME                    TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+aspnet-catapi-service   LoadBalancer   10.152.183.134   <pending>     8080:32201/TCP   2m49s
+
+- NAME: is service name
+- TYPE: The Access of the service
+- CLUSTER-IP: The internal IP of the cluster
+- EXTERNAL-AP: The IP provided by the Cluster to access service from external / puvlic clients
+    - NOTE: Since Microk8s is virual env. the service will ne be allocated with External IP. You will get external IP in AKS, EKS, GKS
+- PORT(S): the Port mapping of Container exposed port  (defined in service.yml)  for external communication will be mapped with the Microk8s VM port
+    - 8080/32201/TCP
+        - 8080 is a port used for publically accessing the Service and 32201 is a port exposed by the Microk8s to that service can be accessed using 
+            - http://locahost:32201/api/[Controller]
+            - OR
+            - http://Kubernetes-Dashboard-IP:32201/api/[Controller] (Not receommended)
+
+
