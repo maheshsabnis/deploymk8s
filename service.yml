@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: aspnet-catapi # the service app name
+  name: aspnet-catapi-service # name for the service deployment
+spec:
+  ports:
+    - port: 8080 # the port used to call service from external apps
+      targetPort: 80 # the container port
+  selector:
+    app: asptnet-catapi-pod # the POD where the image will be deployed in container
+  type: LoadBalancer # provides a public access to the service        

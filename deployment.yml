@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aspnet-catapi-deployment # the deplpoyment name on clusrter
+  namespace: default
+  labels:
+    app: aspnet-catapi-deployment
+spec:
+  selector:
+    matchLabels:
+      app: asptnet-catapi-pod # the pod name that will contain container
+  template: # confoguration for deployment
+    metadata:
+      labels:
+        app: asptnet-catapi-pod
+    spec:
+      containers:
+        - name: aspnet-catapi-container # the container name in POD
+          image: mast007/catapi # image name that will be pulled
+          resources: # very important configuration for the POD so that service will be loaded and executed
+            limits:
+              cpu: "500m" # allocate half CPU for this service
+              memory: "128Mi" # 128 MB of memory
+          ports:
+            - containerPort: 80            
+                  
+      
